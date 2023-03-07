@@ -1,9 +1,12 @@
 import './App.css'
+import Key from './Components/Keys/Key';
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 function App() {
   return (
-    <div>
-   
-     
+    <div className='App'>
+      <Key />
+
     </div>
   );
 }
