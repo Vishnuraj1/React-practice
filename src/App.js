@@ -1,41 +1,35 @@
 import './App.css'
 import 'bootstrap/dist/css/bootstrap.min.css';
-import State from './Components/State';
-import { Container } from 'react-bootstrap';
+import axios from 'axios';
+import { useState } from 'react';
+
+
 
 function App() {
-  const state = [
-    {
-      name: "kerala",
-      language: "Malayalam",
-      population: 1000
-    },
-    {
-      name: "karnataka",
-      language: "Kannada",
-      population: 2000
-    },
-    {
-      name: "Goa",
-      language: "Hindi",
-      population: 400
-    },
-    {
-      name: "TamilNadu",
-      language: "Tamil",
-      population: 2000
-    },
-  ]
+  const [state, setState] = useState([])
   return (
     <div className='App'>
-      <Container>
-        {/* <State name={"kerala"} language={"Malayalam"} population={1000} />
-        <State name={"karnataka"} language={"Kannada"} population={500} />
-        <State name={"TamilNadu"} language={"Tamil"} population={100} /> */}
-        <State states={state}/>
-      </Container>
+      <h1>hello</h1>
+      < button onClick={() => {
+        axios.get('https://jsonplaceholder.typicode.com/posts').then((response) => {
+          console.log(response.data)
+          setState(response.data)
+        })
 
-    </div>
+      }} >Click me</button>
+
+     {state.map((obj,index)=>{
+      return(
+        <div>
+          <h1>{index+1}</h1>
+          <h1>{obj.title}</h1>
+          <h4>{obj.body}</h4>
+        </div>
+      )
+     })}
+      
+    </div >
+
   );
 }
 
