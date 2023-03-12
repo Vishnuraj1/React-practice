@@ -1,17 +1,35 @@
 import './App.css'
 import 'bootstrap/dist/css/bootstrap.min.css';
-import MainRouter from './Components/ReactRouter/MainRouter';
-// import { useNavigate } from 'react-router-dom'
+
+
 
 import React from 'react'
+import About from './Components/About';
+import Profile from './Components/Profile';
+import Portfolio from './Components/Portfolio';
+import { useState } from 'react';
 
 const App = () => {
-  // const navigate =useNavigate()
+ const [state,setState] =useState('')
+ let component
+ if (state==='about'){
+  component= <About></About>
+ }
+ if (state==='profile'){
+  component= <Profile></Profile>
+ }
+ if (state==='portfolio'){
+  component= <Portfolio></Portfolio>
+ }
   return (
     <div className='App'>
-      {/* <button onClick={()=>navigate('/about')}>Click</button> */}
-      {/* <h1>Welcome app</h1> */}
-      <MainRouter/>
+    <button onClick={()=>{setState('about')}}>About</button> &nbsp;&nbsp;
+    <button onClick={()=>{setState('profile')}}>Profile</button> &nbsp;&nbsp;
+    <button onClick={()=>{setState('portfolio')}}>Portfolio</button>
+    {component}
+    
+     
+     
     </div>
   )
 }
