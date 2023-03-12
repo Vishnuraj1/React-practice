@@ -1,9 +1,11 @@
 import React from 'react'
+import One from '../Layers/One'
 
 const Profile = () => {
   return (
-    <div>
+    <div className='bg-success '>
       <h1>Profile page</h1>
+      <One></One>
     </div>
   )
 }

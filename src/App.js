@@ -8,28 +8,36 @@ import About from './Components/About';
 import Profile from './Components/Profile';
 import Portfolio from './Components/Portfolio';
 import { useState } from 'react';
+import { Route, Routes, useNavigate } from 'react-router-dom';
+import { AppContext } from './AppContext';
 
 const App = () => {
- const [state,setState] =useState('')
- let component
- if (state==='about'){
-  component= <About></About>
- }
- if (state==='profile'){
-  component= <Profile></Profile>
- }
- if (state==='portfolio'){
-  component= <Portfolio></Portfolio>
- }
+  const navigate = useNavigate()
+  const [state, setState] = useState(10)
   return (
     <div className='App'>
-    <button onClick={()=>{setState('about')}}>About</button> &nbsp;&nbsp;
-    <button onClick={()=>{setState('profile')}}>Profile</button> &nbsp;&nbsp;
-    <button onClick={()=>{setState('portfolio')}}>Portfolio</button>
-    {component}
-    
-     
-     
+      <button onClick={() =>  navigate('about') }>About</button> &nbsp;&nbsp;
+      <button onClick={() =>  navigate('profile') }>Profile</button> &nbsp;&nbsp;
+      <button onClick={() =>  navigate('portfolio') }>Portfolio</button>
+
+      <AppContext.Provider value={state}>
+
+        <Routes>
+          <Route path='about'>
+            <About></About>
+          </Route>
+
+          <Route path='profile'>
+            <Profile></Profile>
+          </Route>
+
+          <Route path='protfolio'>
+            <Portfolio></Portfolio>
+          </Route>
+        </Routes>
+
+      </AppContext.Provider>
+
     </div>
   )
 }
