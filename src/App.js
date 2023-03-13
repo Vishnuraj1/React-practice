@@ -1,43 +1,47 @@
 import './App.css'
 import 'bootstrap/dist/css/bootstrap.min.css';
-import State from './Components/State';
-import { Container } from 'react-bootstrap';
 
-function App() {
-  const state = [
-    {
-      name: "kerala",
-      language: "Malayalam",
-      population: 1000
-    },
-    {
-      name: "karnataka",
-      language: "Kannada",
-      population: 2000
-    },
-    {
-      name: "Goa",
-      language: "Hindi",
-      population: 400
-    },
-    {
-      name: "TamilNadu",
-      language: "Tamil",
-      population: 2000
-    },
-  ]
+import React from 'react'
+import About from './Components/About';
+import Profile from './Components/Profile';
+import Portfolio from './Components/Portfolio';
+import { useState } from 'react';
+import { Route, Routes, useNavigate } from 'react-router-dom';
+import { AppContext } from './AppContext';
+
+const App = () => {
+  const navigate = useNavigate()
+  const [state, setState] = useState(10)
   return (
     <div className='App'>
-      <Container>
-        {/* <State name={"kerala"} language={"Malayalam"} population={1000} />
-        <State name={"karnataka"} language={"Kannada"} population={500} />
-        <State name={"TamilNadu"} language={"Tamil"} population={100} /> */}
-        <State states={state}/>
-      </Container>
+      <button onClick={() =>  navigate('about') }>About</button> &nbsp;&nbsp;
+      <button onClick={() =>  navigate('profile') }>Profile</button> &nbsp;&nbsp;
+      <button onClick={() =>  navigate('portfolio') }>Portfolio</button>
+
+      <AppContext.Provider value={state}>
+
+        <Routes>
+          <Route path='about'>
+            <About></About>
+          </Route>
+
+          <Route path='profile'>
+            <Profile></Profile>
+          </Route>
+
+          <Route path='protfolio'>
+            <Portfolio></Portfolio>
+          </Route>
+        </Routes>
+
+      </AppContext.Provider>
 
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
+
+
+
 
