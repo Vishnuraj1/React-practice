@@ -1,15 +1,17 @@
 import React from 'react'
 import './App.css'
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Firebase from './Firebase/Config'
-import SignUp from './Components/SignUp';
+import Cards from './Components/Cards';
+import Search from './Components/Search';
+
 
 const App = () => {
  
   return (
     <div className='App'>
      <h1>Welcome Home</h1>
-  <SignUp/>
+     <Search/>
+      <Cards/>
 
     </div>
   )
